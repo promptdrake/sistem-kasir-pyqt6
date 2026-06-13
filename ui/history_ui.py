@@ -22,10 +22,10 @@ class HistoryWidget(QWidget):
         if not pixmap.isNull():
             logo.setPixmap(pixmap.scaled(80, 80, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         
-        title = QLabel("Cashier")
+        title = QLabel("Kasir")
         title.setObjectName("headerTitle")
         
-        self.back_btn = QPushButton("Back to Cashier")
+        self.back_btn = QPushButton("Kembali Ke Kasir")
         self.back_btn.setObjectName("textButton")
         
         self.username_label = QLabel("username")
@@ -41,7 +41,7 @@ class HistoryWidget(QWidget):
         content_frame = QFrame()
         content_layout = QVBoxLayout(content_frame)
         
-        summary_label = QLabel("Order History (All Data)")
+        summary_label = QLabel("Riwayat Transaksi")
         summary_label.setObjectName("sectionTitle")
         
         self.table = QTableWidget(0, 4)

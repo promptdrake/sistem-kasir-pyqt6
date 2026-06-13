@@ -23,10 +23,10 @@ class CashierWidget(QWidget):
         if not pixmap.isNull():
             logo.setPixmap(pixmap.scaled(80, 80, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         
-        title = QLabel("Cashier")
+        title = QLabel("Kasir")
         title.setObjectName("headerTitle")
         
-        self.history_btn = QPushButton("Order History")
+        self.history_btn = QPushButton("Riwayat Transaksi")
         self.history_btn.setObjectName("textButton")
         
         self.username_label = QLabel("username")
@@ -60,7 +60,7 @@ class CashierWidget(QWidget):
         input_row.addWidget(self.harga_barang)
         input_row.addWidget(self.quantity)
         
-        self.add_btn = QPushButton("Add new data")
+        self.add_btn = QPushButton("Tambah Data Baru")
         self.add_btn.setObjectName("actionButton")
         
         self.table = QTableWidget(0, 4)

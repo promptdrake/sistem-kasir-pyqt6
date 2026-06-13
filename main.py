@@ -60,14 +60,14 @@ class MainWindow(QMainWindow):
 
         if not username or not password:
             self.login_widget.msg_label.setStyleSheet("color: red; font-size: 13px;")
-            self.login_widget.msg_label.setText("Please fill all fields")
+            self.login_widget.msg_label.setText("Isi semua input yang diperlukan")
             return
 
         success, msg = database.verify_user(username, password)
         if success:
             self.current_user = username
             self.login_widget.msg_label.setStyleSheet("color: green; font-size: 13px;")
-            self.login_widget.msg_label.setText("Login Successful!")
+            self.login_widget.msg_label.setText("Login Berhasil")
             self.login_widget.username.clear()
             self.login_widget.password.clear()
             self.go_to_cashier()
@@ -82,22 +82,22 @@ class MainWindow(QMainWindow):
 
         if not username or not password or not confirm_password:
             self.signup_widget.msg_label.setStyleSheet("color: red; font-size: 13px;")
-            self.signup_widget.msg_label.setText("Please fill all fields")
+            self.signup_widget.msg_label.setText("Isi semua input yang diperlukan")
             return
 
         if password != confirm_password:
             self.signup_widget.msg_label.setStyleSheet("color: red; font-size: 13px;")
-            self.signup_widget.msg_label.setText("Passwords do not match")
+            self.signup_widget.msg_label.setText("Password tidak cocok")
             return
 
         success, msg = database.create_user(username, password)
         if success:
             self.signup_widget.msg_label.setStyleSheet("color: green; font-size: 13px;")
-            self.signup_widget.msg_label.setText("Account created! Please log in.")
+            self.signup_widget.msg_label.setText("Akun berhasil dibuat! Silahkan login")
             self.signup_widget.username.clear()
             self.signup_widget.password.clear()
             self.signup_widget.confirm_password.clear()
-            QMessageBox.information(self, "Success", "Account created successfully!")
+            QMessageBox.information(self, "Success", "Akun berhasil dibuat! Silahkan login")
             self.go_to_login()
         else:
             self.signup_widget.msg_label.setStyleSheet("color: red; font-size: 13px;")
@@ -113,14 +113,14 @@ class MainWindow(QMainWindow):
         qty_str = self.cashier_widget.quantity.text()
         
         if not name or not harga_str or not qty_str:
-            QMessageBox.warning(self, "Warning", "Please fill all fields")
+            QMessageBox.warning(self, "Warning", "Isi semua input yang diperlukan")
             return
             
         try:
             harga = float(harga_str)
             qty = int(qty_str)
         except ValueError:
-            QMessageBox.warning(self, "Warning", "Harga must be a number and Quantity must be an integer")
+            QMessageBox.warning(self, "Warning", "Harga harus berupa angka dan quantity harus berupa integer")
             return
             
         subtotal = harga * qty
@@ -158,7 +158,7 @@ class MainWindow(QMainWindow):
             self.cashier_widget.table.setRowCount(0)
             self.update_total()
         else:
-            QMessageBox.critical(self, "Error", f"Payment failed: {msg}")
+            QMessageBox.critical(self, "Error", f"Payment Gagal: {msg}")
 
     def go_to_history(self):
         self.history_widget.username_label.setText(self.current_user)
