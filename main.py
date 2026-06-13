@@ -175,8 +175,6 @@ class MainWindow(QMainWindow):
             self.history_widget.table.setItem(row, 0, QTableWidgetItem(str(order['id'])))
             self.history_widget.table.setItem(row, 1, QTableWidgetItem(order['date']))
             self.history_widget.table.setItem(row, 2, QTableWidgetItem(f"Rp {order['total_amount']:,.2f}"))
-            
-            # format item list into string
             items_str = ", ".join([f"{i['quantity']}x {i['name']}" for i in order['items']])
             self.history_widget.table.setItem(row, 3, QTableWidgetItem(items_str))
         
@@ -199,8 +197,8 @@ class MainWindow(QMainWindow):
         self.stacked_widget.setCurrentWidget(self.summary_widget)
 
 if __name__ == "__main__":
+    print("init Database...")
     database.init_db()
-
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
