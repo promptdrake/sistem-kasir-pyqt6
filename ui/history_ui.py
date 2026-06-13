@@ -44,8 +44,8 @@ class HistoryWidget(QWidget):
         summary_label = QLabel("Riwayat Transaksi")
         summary_label.setObjectName("sectionTitle")
         
-        self.table = QTableWidget(0, 4)
-        self.table.setHorizontalHeaderLabels(["ID Transaksi", "Tanggal", "Total Kalkulasi", "Items Detail"])
+        self.table = QTableWidget(0, 5)
+        self.table.setHorizontalHeaderLabels(["ID Transaksi", "Kasir", "Tanggal", "Total Kalkulasi", "Items Detail"])
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         
         content_layout.addWidget(summary_label)

@@ -167,16 +167,17 @@ class MainWindow(QMainWindow):
         
     def load_history(self):
         self.history_widget.table.setRowCount(0)
-        orders = database.get_orders(self.current_user)
+        orders = database.get_orders()
         
         for order in orders:
             row = self.history_widget.table.rowCount()
             self.history_widget.table.insertRow(row)
             self.history_widget.table.setItem(row, 0, QTableWidgetItem(str(order['id'])))
-            self.history_widget.table.setItem(row, 1, QTableWidgetItem(order['date']))
-            self.history_widget.table.setItem(row, 2, QTableWidgetItem(f"Rp {order['total_amount']:,.2f}"))
+            self.history_widget.table.setItem(row, 1, QTableWidgetItem(order['username']))
+            self.history_widget.table.setItem(row, 2, QTableWidgetItem(order['date']))
+            self.history_widget.table.setItem(row, 3, QTableWidgetItem(f"Rp {order['total_amount']:,.2f}"))
             items_str = ", ".join([f"{i['quantity']}x {i['name']}" for i in order['items']])
-            self.history_widget.table.setItem(row, 3, QTableWidgetItem(items_str))
+            self.history_widget.table.setItem(row, 4, QTableWidgetItem(items_str))
         
     def display_summary(self, total, method):
         from datetime import datetime

@@ -93,13 +93,13 @@ def save_order(username, total_amount, payment_method, items):
     finally:
         conn.close()
 
-def get_orders(username):
+def get_orders():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute('''
-        SELECT id, total_amount, payment_method, status, date(order_date) 
-        FROM orders WHERE username = ? ORDER BY id DESC
-    ''', (username,))
+        SELECT id, username, total_amount, payment_method, status, date(order_date) 
+        FROM orders ORDER BY id DESC
+    ''')
     orders = cursor.fetchall()
     
     result = []
@@ -111,10 +111,11 @@ def get_orders(username):
         items = cursor.fetchall()
         result.append({
             'id': order_id,
-            'total_amount': order[1],
-            'payment_method': order[2],
-            'status': order[3],
-            'date': order[4],
+            'username': order[1],
+            'total_amount': order[2],
+            'payment_method': order[3],
+            'status': order[4],
+            'date': order[5],
             'items': [{'name': i[0], 'price': i[1], 'quantity': i[2]} for i in items]
         })
     conn.close()
